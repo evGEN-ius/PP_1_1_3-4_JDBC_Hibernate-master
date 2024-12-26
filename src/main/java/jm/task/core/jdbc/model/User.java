@@ -1,10 +1,8 @@
 package jm.task.core.jdbc.model;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Table
+import javax.persistence.*;
+@Entity
+@Table(name = "users")
 public class User {
     @Id
     private Long id;
@@ -18,8 +16,12 @@ public class User {
     @Column
     private Byte age;
 
-    private static Long l = 0L;
 
+
+
+    private static Long l = 1L;
+
+    public User() {}
 
     public User(String name, String lastName, Byte age) {
         this.name = name;
@@ -43,7 +45,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
-                '}';
+                '}' + "\n" ;
     }
 
     public Long getId() {
