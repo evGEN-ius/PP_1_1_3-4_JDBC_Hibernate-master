@@ -41,8 +41,6 @@ public class Util {
             configuration.setProperty("hibernate.hbm2ddl.auto", "update");
             configuration.setProperty("hibernate.show_sql", "true");
 
-
-
             // Добавление аннотированных классов
             configuration.addAnnotatedClass(jm.task.core.jdbc.model.User.class);
 
@@ -52,8 +50,5 @@ public class Util {
             throw new ExceptionInInitializerError(ex);
         }
     }
-
-
-
 
 }

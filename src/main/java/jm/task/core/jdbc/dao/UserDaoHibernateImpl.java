@@ -15,10 +15,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
-    public UserDaoHibernateImpl() {
-
-    }
-
+    public UserDaoHibernateImpl() {}
 
     @Override
     public void createUsersTable() {
@@ -36,6 +33,9 @@ public class UserDaoHibernateImpl implements UserDao {
             session.createNativeQuery(sql).executeUpdate(); // Выполнение нативного SQL-запроса
             transaction.commit();
         } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback(); // Откат транзакции при ошибке
+            }
             e.printStackTrace();
         }
 
@@ -51,6 +51,9 @@ public class UserDaoHibernateImpl implements UserDao {
             session.createNativeQuery(sql).executeUpdate(); // Выполнение нативного SQL-запроса
             transaction.commit();
         } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback(); // Откат транзакции при ошибке
+            }
             e.printStackTrace();
         }
     }
@@ -64,6 +67,9 @@ public class UserDaoHibernateImpl implements UserDao {
             session.save(user); // Сохранение пользователя
             transaction.commit();
         } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback(); // Откат транзакции при ошибке
+            }
             e.printStackTrace();
         }
     }
@@ -77,10 +83,11 @@ public class UserDaoHibernateImpl implements UserDao {
             // Создаем запрос для удаления пользователя по ID
             Query query = session.createQuery("DELETE FROM User WHERE id = :id");
             query.setParameter("id", id); // Устанавливаем параметр id
-            // Выполняем запрос
-            int result = query.executeUpdate();
             transaction.commit();
         }catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback(); // Откат транзакции при ошибке
+            }
             e.printStackTrace();
         }
     }
@@ -95,6 +102,9 @@ public class UserDaoHibernateImpl implements UserDao {
             users = query.getResultList();
             transaction.commit();
         } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback(); // Откат транзакции при ошибке
+            }
             e.printStackTrace();
         }
         return users;
@@ -108,6 +118,9 @@ public class UserDaoHibernateImpl implements UserDao {
             session.createQuery("DELETE FROM User").executeUpdate();
             transaction.commit();
         } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback(); // Откат транзакции при ошибке
+            }
             e.printStackTrace(); //
         }
     }

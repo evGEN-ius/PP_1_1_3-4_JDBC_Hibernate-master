@@ -9,10 +9,7 @@ import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
 
-
-    public UserDaoJDBCImpl() {
-
-    }
+    public UserDaoJDBCImpl() {}
 
     public void createUsersTable() {
         String sql = "CREATE TABLE IF NOT EXISTS users (" +

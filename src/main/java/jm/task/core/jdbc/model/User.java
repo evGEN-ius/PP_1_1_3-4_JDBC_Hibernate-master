@@ -16,9 +16,6 @@ public class User {
     @Column
     private Byte age;
 
-
-
-
     private static Long l = 1L;
 
     public User() {}
@@ -28,14 +25,12 @@ public class User {
         this.lastName = lastName;
         this.age = age;
         this.id = l++;
-
     }
     public User(String name, String lastName, Byte age,Long id) {
         this.name = name;
         this.lastName = lastName;
         this.age = age;
         this.id = id;
-
     }
 
     @Override
